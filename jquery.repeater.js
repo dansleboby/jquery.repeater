@@ -1,6 +1,6 @@
 // jquery.repeater version 1.2.4
 // https://github.com/DubFriend/jquery.repeater
-// (MIT) 24-04-2022
+// (MIT) 02-05-2022
 // Brian Detering <BDeterin@gmail.com> (http://www.briandetering.net/)
 (function ($) {
 'use strict';
@@ -1021,13 +1021,21 @@ $.fn.repeater = function (fig) {
                         // match non empty brackets (ex: "[foo]")
                         var matches = $input.attr('name').match(/\[[^\]]+\]/g);
 
-                        var name = matches ?
-                            // strip "[" and "]" characters
-                            last(matches).replace(/\[|\]/g, '') :
-                            $input.attr('name');
+                        var baseName = $input.attr('name').replace(groupName, '');
+                        var name = '';
+                        if(baseName.indexOf('[') === 0) {
+                            var firstBrace = baseName.indexOf(']');
+                            name = baseName.substr(firstBrace+1);
+                        } else {
+                            var parts = $input.attr('name').replace(groupName, '').match(/(.*?)((?:\[.*?\])+)/);
+                            name = matches && parts.length >= 2 ?
+                                // strip "[" and "]" characters
+                                '[' + parts[1] + ']' + parts[2] :
+                                '[' + $input.attr('name') + ']';
+                        }
 
 
-                        var newName = groupName + '[' + index + '][' + name + ']' +
+                        var newName = groupName + '[' + index + ']' + name +
                             ($input.is(':checkbox') || $input.attr('multiple') ? '[]' : '');
 
                         $input.attr('name', newName);
