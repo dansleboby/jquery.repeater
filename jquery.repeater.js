@@ -1022,13 +1022,12 @@ $.fn.repeater = function (fig) {
                         var matches = $input.attr('name').match(/\[[^\]]+\]/g);
 
                         var baseName = $input.attr('name').replace(groupName, '');
-                        var name = '';
                         if(baseName.indexOf('[') === 0) {
                             var firstBrace = baseName.indexOf(']');
-                            name = baseName.substr(firstBrace+1);
+                            var name = baseName.substr(firstBrace+1);
                         } else {
                             var parts = $input.attr('name').replace(groupName, '').match(/(.*?)((?:\[.*?\])+)/);
-                            name = matches && parts.length >= 2 ?
+                            var name = matches && parts.length >= 2 ?
                                 // strip "[" and "]" characters
                                 '[' + parts[1] + ']' + parts[2] :
                                 '[' + $input.attr('name') + ']';

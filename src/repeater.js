@@ -166,9 +166,7 @@ $.fn.repeater = function (fig) {
 
 
                         var newName = groupName + '[' + index + ']' + name +
-                            ($input.attr('multiple') ? '[]' : '');
-
-                        var newName = groupName + '[' + index + '][' + name + ']' +
+                            ($input.is(':checkbox') || $input.attr('multiple') ? '[]' : '');
 
                         $input.attr('name', newName);
 
