@@ -1150,7 +1150,7 @@ $.fn.repeater = function (fig) {
                 $items().find('[data-repeater-delete]').eq(0).remove();
             }
 
-            $filterNested($self.find('[data-repeater-create]'), fig.repeaters).click(function () {
+            $filterNested($self.find('[data-repeater-create]:first'), fig.repeaters).click(function () {
                 addItem();
             });
         };
