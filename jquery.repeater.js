@@ -1,6 +1,6 @@
 // jquery.repeater version 1.2.4
 // https://github.com/DubFriend/jquery.repeater
-// (MIT) 02-05-2022
+// (MIT) 24-05-2022
 // Brian Detering <BDeterin@gmail.com> (http://www.briandetering.net/)
 (function ($) {
 'use strict';
@@ -1146,8 +1146,8 @@ $.fn.repeater = function (fig) {
             $items().remove();
             foreach(rows, addItem);
 
-            if (fig.isFirstItemUndeletable && $items().find('[data-repeater-delete]:first').length === 1) {
-                $items().find('[data-repeater-delete]:first').remove();
+            if (fig.isFirstItemUndeletable && $items().find('[data-repeater-delete]').length >= 1) {
+                $items().find('[data-repeater-delete]').eq(0).remove();
             }
 
             $filterNested($self.find('[data-repeater-create]'), fig.repeaters).click(function () {
